@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,8 +26,8 @@ public class Checkitemdetailed implements Serializable {
     /**
      * 检查项明细编号
      */
-    @TableId(value = "cdId", type = IdType.AUTO)
-    private Integer cdid;
+    @TableId(value = "cd_Id", type = IdType.AUTO)
+    private Integer cdId;
 
     /**
      * 检查项明细名称
@@ -56,14 +56,14 @@ public class Checkitemdetailed implements Serializable {
     /**
      * 检查项明细正常值（非数字型）
      */
-    @TableField("normalValue")
-    private String normalvalue;
+    @TableField("normal_Value")
+    private String normalValue;
 
     /**
      * 检查项验证范围说明文字
      */
-    @TableField("normalValueString")
-    private String normalvaluestring;
+    @TableField("normal_Value_String")
+    private String normalValueString;
 
     /**
      * 检查项明细类型（1 数值范围验证型 2数值相等验证型 3无需验证型 4描述型 5其它）
@@ -74,8 +74,8 @@ public class Checkitemdetailed implements Serializable {
     /**
      * 所属检查项编号
      */
-    @TableField("ciId")
-    private Integer ciid;
+    @TableField("ci_Id")
+    private Integer ciId;
 
     /**
      * 备注

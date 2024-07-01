@@ -27,32 +27,32 @@ public class Orders implements Serializable {
     /**
      * 订单编号
      */
-    @TableId(value = "orderId", type = IdType.AUTO)
-    private Integer orderid;
+    @TableId(value = "order_Id", type = IdType.AUTO)
+    private Integer orderId;
 
     /**
      * 预约日期
      */
-    @TableField("orderDate")
-    private LocalDate orderdate;
+    @TableField("order_Date")
+    private LocalDate orderDate;
 
     /**
      * 客户编号
      */
-    @TableField("userId")
-    private String userid;
+    @TableField("user_Id")
+    private String userId;
 
     /**
      * 所属医院编号
      */
-    @TableField("hpId")
-    private Integer hpid;
+    @TableField("hp_Id")
+    private Integer hpId;
 
     /**
      * 所属套餐编号
      */
-    @TableField("smId")
-    private Integer smid;
+    @TableField("sm_Id")
+    private Integer smId;
 
     /**
      * 订单状态（1 未归档 2 已归档）

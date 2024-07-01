@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,8 +26,8 @@ public class Setmeal implements Serializable {
     /**
      * 体检套餐编号
      */
-    @TableId(value = "smId", type = IdType.AUTO)
-    private Integer smid;
+    @TableId(value = "sm_Id", type = IdType.AUTO)
+    private Integer smId;
 
     /**
      * 体检套餐名称

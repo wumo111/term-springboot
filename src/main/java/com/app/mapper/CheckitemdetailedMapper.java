@@ -2,7 +2,6 @@ package com.app.mapper;
 
 import com.app.entity.Checkitemdetailed;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -10,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 public interface CheckitemdetailedMapper extends BaseMapper<Checkitemdetailed> {
 

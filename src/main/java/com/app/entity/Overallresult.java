@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,8 +26,8 @@ public class Overallresult implements Serializable {
     /**
      * 总检结论项编号
      */
-    @TableId(value = "orId", type = IdType.AUTO)
-    private Integer orid;
+    @TableId(value = "or_Id", type = IdType.AUTO)
+    private Integer orId;
 
     /**
      * 总检结论项标题
@@ -44,8 +44,8 @@ public class Overallresult implements Serializable {
     /**
      * 所属预约编号
      */
-    @TableField("orderId")
-    private Integer orderid;
+    @TableField("order_Id")
+    private Integer orderId;
 
 
 }

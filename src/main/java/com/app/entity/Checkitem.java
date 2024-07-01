@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,20 +26,20 @@ public class Checkitem implements Serializable {
     /**
      * 检查项编号
      */
-    @TableId(value = "ciId", type = IdType.AUTO)
-    private Integer ciid;
+    @TableId(value = "ci_Id", type = IdType.AUTO)
+    private Integer ciId;
 
     /**
      * 检查项名称
      */
-    @TableField("ciName")
-    private String ciname;
+    @TableField("ci_Name")
+    private String ciName;
 
     /**
      * 检查项内容
      */
-    @TableField("ciContent")
-    private String cicontent;
+    @TableField("ci_Content")
+    private String ciContent;
 
     /**
      * 检查项意义

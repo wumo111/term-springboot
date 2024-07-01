@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,8 +26,8 @@ public class Cidetailedreport implements Serializable {
     /**
      * 检查项明细报告编号
      */
-    @TableId(value = "cidrId", type = IdType.AUTO)
-    private Integer cidrid;
+    @TableId(value = "cidr_Id", type = IdType.AUTO)
+    private Integer cidrId;
 
     /**
      * 检查项明细名称
@@ -56,14 +56,14 @@ public class Cidetailedreport implements Serializable {
     /**
      * 检查项明细正常值（非数值型）
      */
-    @TableField("normalValue")
-    private String normalvalue;
+    @TableField("normal_Value")
+    private String normalValue;
 
     /**
      * 检查项验证范围说明文字
      */
-    @TableField("normalValueString")
-    private String normalvaluestring;
+    @TableField("normal_Value_String")
+    private String normalValueString;
 
     /**
      * 检查项明细类型（1数值范围验证型 2数值相等验证型 3无需验证型 4描述型 5其它）
@@ -80,20 +80,20 @@ public class Cidetailedreport implements Serializable {
     /**
      * 此项是否异常（0无异常 1异常）
      */
-    @TableField("siError")
-    private Integer sierror;
+    @TableField("si_Error")
+    private Integer siError;
 
     /**
      * 所属检查项报告编号
      */
-    @TableField("ciId")
-    private Integer ciid;
+    @TableField("ci_Id")
+    private Integer ciId;
 
     /**
      * 所属预约编号
      */
-    @TableField("orderId")
-    private Integer orderid;
+    @TableField("order_Id")
+    private Integer orderId;
 
 
 }

@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,26 +26,26 @@ public class Cireport implements Serializable {
     /**
      * 检查项报告主键
      */
-    @TableId(value = "cirId", type = IdType.AUTO)
-    private Integer cirid;
+    @TableId(value = "cir_Id", type = IdType.AUTO)
+    private Integer cirId;
 
     /**
      * 检查项编号
      */
-    @TableField("ciId")
-    private Integer ciid;
+    @TableField("ci_Id")
+    private Integer ciId;
 
     /**
      * 检查项名称
      */
-    @TableField("ciName")
-    private String ciname;
+    @TableField("ci_Name")
+    private String ciName;
 
     /**
      * 所属预约编号
      */
-    @TableField("orderId")
-    private Integer orderid;
+    @TableField("order_Id")
+    private Integer orderId;
 
 
 }

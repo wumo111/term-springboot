@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Byterain
- * @since 2024-06-29
+ * @since 2024-07-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,20 +26,20 @@ public class Doctor implements Serializable {
     /**
      * 医生编号
      */
-    @TableId(value = "docId", type = IdType.AUTO)
-    private Integer docid;
+    @TableId(value = "doc_Id", type = IdType.AUTO)
+    private Integer docId;
 
     /**
      * 医生编码（登录使用）
      */
-    @TableField("docCode")
-    private String doccode;
+    @TableField("doc_Code")
+    private String docCode;
 
     /**
      * 真实姓名
      */
-    @TableField("realName")
-    private String realname;
+    @TableField("real_Name")
+    private String realName;
 
     /**
      * 密码（登录使用）
