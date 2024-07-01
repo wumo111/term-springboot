@@ -3,6 +3,7 @@ package com.app.controller;
 
 import com.app.entity.Users;
 import com.app.service.UsersService;
+import com.app.util.MD5Utils;
 import com.app.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class UsersController {
         if (one == null) {
             return Result.error(1001, "没有查询到该用户");
         } else {
-            if (one.getPassword().equals(users.getPassword())) {
+            if (one.getPassword().equals(
+                    MD5Utils.md5(MD5Utils.inputPassToNewPass(users.getPassword())) )) {
                 return Result.ok("token_string");
             } else {
                 return Result.error(1002, "输入的密码不正确");
@@ -44,6 +46,9 @@ public class UsersController {
     @PostMapping("/register")
     public Result register(@RequestBody Users users) {
         users.setUserType(1);
+        String newPass =
+                MD5Utils.md5(MD5Utils.inputPassToNewPass(users.getPassword()));
+        users.setPassword(newPass);
         try {
             usersService.register(users);
             return Result.ok();

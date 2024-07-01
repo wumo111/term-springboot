@@ -26,8 +26,8 @@ public class Hospital implements Serializable {
     /**
      * 医院编号
      */
-    @TableId(value = "hpId", type = IdType.AUTO)
-    private Integer hpid;
+    @TableId(value = "hp_Id", type = IdType.AUTO)
+    private Integer hpId;
 
     /**
      * 医院名称
@@ -56,8 +56,8 @@ public class Hospital implements Serializable {
     /**
      * 营业时间
      */
-    @TableField("businessHours")
-    private String businesshours;
+    @TableField("business_Hours")
+    private String businessHours;
 
     /**
      * 采血截止时间
