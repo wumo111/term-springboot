@@ -29,6 +29,10 @@ public class UsersController {
     public Result<List<Users>> getAll(){
         return result.ok(usersService.getUserAll());
     }
+    @RequestMapping("/getById")
+    public Result<Users> getById(@RequestParam String userId) {
+        return result.ok(usersService.getById(userId));
+    }
     @PostMapping("/login")
     public Result login(@RequestBody Users users) {
         Users one = usersService.getById(users.getUserId());

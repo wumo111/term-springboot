@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.mapper.OrdersMapper">
-
+    <select id="getAllOrders" resultType="map">
+        SELECT o.order_Id, o.order_Date, o.user_Id, o.hp_Id, o.sm_Id, o.state,
+               h.name as hname, c.real_name, s.name as sname,c.sex
+        FROM orders o
+                 JOIN hospital h ON o.hp_Id = h.hp_Id
+                 JOIN users c ON o.user_Id = c.user_Id
+                 JOIN setmeal s ON o.sm_Id = s.sm_Id
+    </select>
 </mapper>

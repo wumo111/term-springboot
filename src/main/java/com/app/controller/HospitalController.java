@@ -8,6 +8,7 @@ import com.app.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,5 +30,9 @@ public class HospitalController {
     @RequestMapping("/getAll")
     public Result<List<Hospital>> getAll(){
         return result.ok(hospitalService.getUserAll());
+    }
+    @RequestMapping("/getById")
+    public Result<Hospital> getById(@RequestParam String hpId) {
+        return result.ok(hospitalService.getById(hpId));
     }
 }

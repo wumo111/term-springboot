@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -46,6 +48,7 @@ public class Setmeal implements Serializable {
      */
     @TableField("price")
     private Integer price;
-
+    @TableField(exist = false)
+    private List<Checkitem> checkItemList;
 
 }
