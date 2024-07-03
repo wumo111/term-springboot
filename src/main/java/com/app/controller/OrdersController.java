@@ -9,8 +9,10 @@ import com.app.util.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -29,11 +31,14 @@ public class OrdersController {
     @Autowired
     OrdersService orderservice;
     @RequestMapping("/getAllById")
-    public Result<List<Orders>> getAll(@RequestParam String userId) {
-        QueryWrapper<Orders> qw = new QueryWrapper<>();
-        qw.eq("user_id", userId);
-        List<Orders> list = orderservice.list(qw);
-        return result.ok(list);
+    public Result<List<Map<String, Object>>> getAllById(@RequestParam String userId) {
+        List<Map<String, Object>> orders = orderservice.getAllById(userId);
+        return result.ok(orders);
+    }
+    @RequestMapping("/getByOrderId")
+    public Result<Map<String, Object>> getByOrderId(@RequestParam String orderId) {
+        Map<String, Object> orders = orderservice.getByOrderId(orderId);
+        return result.ok(orders);
     }
     @RequestMapping("/recieveById")
     public Result recieveById(@RequestBody Orders orders) {
@@ -52,8 +57,17 @@ public class OrdersController {
         List<Map<String, Object>> orders = orderservice.getAllOrders();
         return result.ok(orders);
     }
-    @RequestMapping("/checkAvailability")
-    public Result checkAvailability(@RequestBody CheckAvailabilityDto dto){
+    @GetMapping("/checkAvailability")
+    public Result checkAvailability(
+            @RequestParam("smId") Integer smId,
+            @RequestParam("hpId") Integer hpId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
+        CheckAvailabilityDto dto = new CheckAvailabilityDto(smId, hpId, startDate, startDate.plusDays(1));
         return orderservice.checkAvailability(dto);
+    }
+    @RequestMapping("/save")
+    public Result save(@RequestBody Orders orders) {
+        orderservice.save(orders);
+        return result.ok();
     }
 }

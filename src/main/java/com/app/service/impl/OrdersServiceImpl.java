@@ -33,6 +33,14 @@ import java.util.Map;
 public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> implements OrdersService {
     @Autowired
     private OrdersMapper ordersMapper;
+    public Map<String, Object> getByOrderId(String orderId) {
+        System.out.println(ordersMapper.getByOrderId(orderId));
+        return ordersMapper.getByOrderId(orderId);
+    }
+    public List<Map<String, Object>> getAllById(String userId)
+    {
+        return ordersMapper.getAllByUserId(userId);
+    }
 
     public List<Map<String, Object>> getAllOrders() {
         return ordersMapper.getAllOrders();

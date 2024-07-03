@@ -6,7 +6,7 @@
         <result property="ciName" column="name"/>
         <!-- items 作为一个 association，嵌套查询详细项 -->
         <collection property="items" ofType="com.app.entity.response.CiDetailedItem">
-            <id property="cdId" column="cidr_Id"/>
+            <id property="cdId" column="cd_Id"/>
             <result property="name" column="name"/>
             <result property="unit" column="unit"/>
             <result property="minRange" column="minrange"/>
@@ -16,13 +16,22 @@
             <result property="remarks" column="normal_Value_String"/>
         </collection>
     </resultMap>
-    <select id="getAllOrders" resultType="map">
+    <select id="getAllOrders" resultType="map" parameterType="java.lang.String">
         SELECT o.order_Id, o.order_Date, o.user_Id, o.hp_Id, o.sm_Id, o.state,
                h.name as hname, c.real_name, s.name as sname,c.sex
         FROM orders o
                  JOIN hospital h ON o.hp_Id = h.hp_Id
                  JOIN users c ON o.user_Id = c.user_Id
                  JOIN setmeal s ON o.sm_Id = s.sm_Id
+    </select>
+    <select id="getByOrderId" resultType="map">
+        SELECT o.order_Id, o.order_Date, o.user_Id, o.hp_Id, o.sm_Id, o.state,
+               h.name as hname, c.real_name, s.name as sname,c.sex
+        FROM orders o
+                 JOIN hospital h ON o.hp_Id = h.hp_Id
+                 JOIN users c ON o.user_Id = c.user_Id
+                 JOIN setmeal s ON o.sm_Id = s.sm_Id
+        where order_Id = #{orderId}
     </select>
     <select id="getOrdersByUserIdxiangxi" resultType="map">
         SELECT o.order_Id, o.order_Date, o.user_Id, o.hp_Id, o.sm_Id, o.state,
@@ -32,12 +41,12 @@
                  JOIN users c ON o.user_Id = c.user_Id
                  JOIN setmeal s ON o.sm_Id = s.sm_Id
     </select>
-    <select id="getOrdersByUserId" resultType="map">
+    <select id="getAllByUserId" resultType="map">
         SELECT o.order_Id, o.order_Date, o.user_Id, o.hp_Id, o.sm_Id, o.state,
                h.name as hname, c.real_name
         FROM orders o
                  JOIN hospital h ON o.hp_Id = h.hp_Id
                  JOIN users c ON o.user_Id = c.user_Id
-        WHERE o.user_Id = #{orderId}
+        WHERE o.user_Id = #{userId}
     </select>
 </mapper>

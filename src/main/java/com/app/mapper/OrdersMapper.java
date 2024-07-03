@@ -27,4 +27,8 @@ public interface OrdersMapper extends BaseMapper<Orders> {
     @Select("select DATE(order_date) as orderDate,COUNT(*) as orderCount from orders where hp_id =#{dto.hpId} and sm_id =#{dto.smId} and order_date BETWEEN #{dto.startDate} AND #{dto.endDate} GROUP BY DATE(order_date)")
     List<OrderCountByDateVO> selectOrderCountByDateRange(@Param("dto") CheckAvailabilityDto dto);
 
+    Map<String, Object> getByOrderId(String orderId);
+    @MapKey("orderId")
+
+    List<Map<String, Object>> getAllByUserId(String userId);
 }

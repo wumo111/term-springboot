@@ -20,4 +20,8 @@ import java.util.Map;
 public interface OrdersService extends IService<Orders> {
     public List<Map<String, Object>> getAllOrders();
     public Result<AvailabilityVo> checkAvailability(CheckAvailabilityDto dto);
+
+    public Map<String, Object> getByOrderId(String orderId);
+
+    public List<Map<String, Object>> getAllById(String userId);
 }
