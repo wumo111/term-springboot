@@ -57,7 +57,7 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
         temp.setStartDate(nowDate);
 
         List<OrderCountByDateVO> odcList = ordersMapper.selectOrderCountByDateRange(temp);
-        System.out.println( availability);
+        System.out.println( availability);;
         System.out.println(odcList);
         for (OrderCountByDateVO ocd : odcList){
             //odc包含一个日期 和该日期 实际下单量

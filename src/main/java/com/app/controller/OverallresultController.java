@@ -5,6 +5,7 @@ import com.app.entity.Checkitem;
 import com.app.entity.Overallresult;
 import com.app.entity.Setmeal;
 import com.app.entity.Setmealdetailed;
+import com.app.entity.request.OverallreVo;
 import com.app.service.OverallresultService;
 import com.app.util.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -37,8 +38,11 @@ public class OverallresultController {
         return result.ok(overallresultService.loading(orderId));
     }
     @RequestMapping("/add")
-    public Result add(@RequestBody List<Overallresult> listoverallresult){
+    public Result add(@RequestBody OverallreVo overallreVo){
+        List<Overallresult> listoverallresult=overallreVo.getItem();
+        Integer orderId=overallreVo.getOrderId();
         listoverallresult.forEach(overallresult -> {
+            overallresult.setOrderId(orderId);
             overallresultService.deleteByOrderIdAndTitle(overallresult.getOrderId(), overallresult.getTitle());
             overallresultService.save(overallresult);
         });
