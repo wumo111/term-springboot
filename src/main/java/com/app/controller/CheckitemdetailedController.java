@@ -28,4 +28,5 @@ public class CheckitemdetailedController {
     public Result<List<CiDetailedReportVo>> getCiDetailedReportsByOrderId(@RequestParam("orderId") int orderId) {
         return result.ok(orderService.getCiDetailedReportsByOrderId(orderId));
     }
+
 }

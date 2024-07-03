@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface OverallresultService extends IService<Overallresult> {
     public List<Overallresult> loading(String orderId);
+
+    public void deleteByOrderIdAndTitle(Integer orderId, String title);
 }

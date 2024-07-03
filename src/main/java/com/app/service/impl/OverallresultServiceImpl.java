@@ -4,6 +4,7 @@ import com.app.entity.Overallresult;
 import com.app.mapper.OverallresultMapper;
 import com.app.service.OverallresultService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +19,14 @@ import java.util.List;
  */
 @Service
 public class OverallresultServiceImpl extends ServiceImpl<OverallresultMapper, Overallresult> implements OverallresultService {
+    @Autowired
     OverallresultMapper overallresultMapper;
+    @Override
     public List<Overallresult> loading(String orderId) {
-        if (overallresultMapper.loading(orderId) == null){
-            System.out.println("No data found");
-            return null;
-        }
-        else return overallresultMapper.loading(orderId);
+         return overallresultMapper.loading(orderId);
+    }
+    @Override
+    public void deleteByOrderIdAndTitle(Integer orderId, String title){
+        overallresultMapper.deleteByOrderIdAndTitle(orderId, title);
     }
 }

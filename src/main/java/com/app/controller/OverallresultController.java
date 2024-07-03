@@ -33,7 +33,15 @@ public class OverallresultController {
     OverallresultService overallresultService;
     Result result;
     @RequestMapping("/loading")
-    public Result loading(@RequestParam String orderId){
+    public Result<List<Overallresult>> loading(@RequestParam String orderId){
         return result.ok(overallresultService.loading(orderId));
+    }
+    @RequestMapping("/add")
+    public Result add(@RequestBody List<Overallresult> listoverallresult){
+        listoverallresult.forEach(overallresult -> {
+            overallresultService.deleteByOrderIdAndTitle(overallresult.getOrderId(), overallresult.getTitle());
+            overallresultService.save(overallresult);
+        });
+        return result.ok();
     }
 }
