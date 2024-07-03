@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.mapper.CheckitemdetailedMapper">
+<!--     在您的 Mapper XML 文件中 -->
+<!--     定义一个 resultMap，用于映射查询结果 -->
+    <resultMap id="CiDetailedReportMap" type="com.app.entity.response.CiDetailedReportVo">
+        <id property="ciId" column="ci_Id"/>
+        <result property="ciName" column="ci_name"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <!-- items 作为一个 association，嵌套查询详细项 -->
+        <collection property="items" ofType="com.app.entity.response.CiDetailedItem">
+            <id property="cdId" column="cd_Id"/>
+            <result property="name" column="name"/>
+            <result property="unit" column="unit"/>
+            <result property="minRange" column="minrange"/>
+            <result property="maxRange" column="maxrange"/>
+            <result property="normalValueString" column="normal_Value_String"/>
+            <result property="value" column="value"/>
+            <result property="type" column="type"/>
+            <result property="siError" column="si_Error"/>
+            <result property="remarks" column="remarks"/>
+        </collection>
+    </resultMap>
+
+    <!-- 编写您的查询语句 -->
+    <select id="getCiDetailedReportsByOrderId" resultMap="CiDetailedReportMap">
+        select c.ci_Id as ci_id, c.ci_Name as ci_Name,title,content,c2.*,cidr_Id,value,si_Error
+        from orders o
+                 join setmealdetailed s on o.sm_Id = s.sm_Id
+                 left join overallresult o2 on o.order_Id = o2.order_Id
+                 join checkitem c on s.ci_Id = c.ci_Id
+                 join checkitemdetailed c2 on c.ci_Id = c2.ci_Id
+                 left join app.truecidetailedreport c3 on c2.cd_Id = c3.cd_Id and o.order_Id=c3.order_Id
+        where o.order_Id=#{orderId}
+
+    </select>
 
 </mapper>
