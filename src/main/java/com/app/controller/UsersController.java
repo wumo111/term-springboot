@@ -8,7 +8,9 @@ import com.app.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -41,7 +43,11 @@ public class UsersController {
         } else {
             if (one.getPassword().equals(
                     MD5Utils.md5(MD5Utils.inputPassToNewPass(users.getPassword())) )) {
-                return Result.ok("token_string");
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("id", users.getUserId());
+                claims.put("name", users.getRealName());
+                String jwt = com.example.qiuqiul.util.JwtUtils.generateJwt(claims);
+                return Result.ok(jwt);
             } else {
                 return Result.error(1002, "输入的密码不正确");
             }
@@ -55,7 +61,9 @@ public class UsersController {
         users.setPassword(newPass);
         try {
             usersService.register(users);
-            return Result.ok();
+            if(users.getUserId().length()==11&&users.getIdentityCard().length()==18)
+                return Result.ok();
+            else return Result.error(1003, "手机或身份证输入有问题");
         } catch (Exception e) {
             System.out.println(e);
             return Result.error(1003, "注册失败");

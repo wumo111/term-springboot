@@ -6,6 +6,7 @@ import com.app.entity.response.AvailabilityVo;
 import com.app.util.Result;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +25,6 @@ public interface OrdersService extends IService<Orders> {
     public Map<String, Object> getByOrderId(String orderId);
 
     public List<Map<String, Object>> getAllById(String userId);
+
+    public Orders getByHpIdAndSmIdAndOrderDate(Integer hpId, Integer smId, LocalDate parse,String userId);
 }

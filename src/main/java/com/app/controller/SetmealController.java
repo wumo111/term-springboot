@@ -33,6 +33,10 @@ public class SetmealController {
     SetmealdetailedService setmealdetailedService;
     @Autowired
     CheckitemService checkitemService;
+    @RequestMapping("/getById")
+    public Result<Setmeal> getById(Integer smId){
+        return result.ok(setmealService.getById(smId));
+    }
     @RequestMapping("/getAll")
     public Result<List<Setmeal>> getAll(){
         List<Setmeal> setmealList = setmealService.list();//所有体检套餐

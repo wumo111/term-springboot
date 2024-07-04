@@ -45,13 +45,18 @@ public class OrdersController {
         orderservice.save(orders);
         return result.ok();
     }
-    @RequestMapping("/turn1")
-    public Result turn1(@RequestParam String orderId) {
-        Orders orders=orderservice.getById(orderId);
-        orders.setState(2);
-        orderservice.updateById(orders);
-        return result.ok();
+    @GetMapping("/turn1")
+    public Result turn1(@RequestParam Integer hpId, @RequestParam Integer smId, @RequestParam String orderDate, @RequestParam String userId) {
+        Orders orders = orderservice.getByHpIdAndSmIdAndOrderDate(hpId, smId, LocalDate.parse(orderDate),userId);
+        if (orders != null) {
+            orders.setState(2);
+            orderservice.updateById(orders);
+            return result.ok();
+        } else {
+            return result.error("Order not found");
+        }
     }
+
     @RequestMapping("/getAll")
     public Result<List<Map<String, Object>>> getAllOrders() {
         List<Map<String, Object>> orders = orderservice.getAllOrders();

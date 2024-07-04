@@ -33,6 +33,9 @@ public class HospitalController {
     }
     @RequestMapping("/getById")
     public Result<Hospital> getById(@RequestParam String hpId) {
-        return result.ok(hospitalService.getById(hpId));
+        if(hospitalService.getById(hpId)!=null)
+            return result.ok(hospitalService.getById(hpId));
+        else
+            return result.error("not found");
     }
 }

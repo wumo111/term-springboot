@@ -41,7 +41,9 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     {
         return ordersMapper.getAllByUserId(userId);
     }
-
+    public Orders getByHpIdAndSmIdAndOrderDate(Integer hpId, Integer smId, LocalDate parse,String userId){
+        return ordersMapper.getByHpIdAndSmIdAndOrderDate(hpId, smId, parse,userId);
+    }
     public List<Map<String, Object>> getAllOrders() {
         return ordersMapper.getAllOrders();
     }

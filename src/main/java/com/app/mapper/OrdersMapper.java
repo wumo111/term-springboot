@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -31,4 +32,7 @@ public interface OrdersMapper extends BaseMapper<Orders> {
     @MapKey("orderId")
 
     List<Map<String, Object>> getAllByUserId(String userId);
+
+    @Select("SELECT * FROM orders WHERE hp_Id = #{hpId} AND sm_Id = #{smId} AND order_Date = #{orderDate} AND user_Id = #{userId}")
+    Orders getByHpIdAndSmIdAndOrderDate(@Param("hpId") Integer hpId, @Param("smId") Integer smId, @Param("orderDate") LocalDate orderDate,@Param("userId") String userId);
 }
